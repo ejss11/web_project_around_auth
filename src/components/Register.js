@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { signup } from "../utils/auth";
+import * as auth from "../utils/auth";
 import "../blocks/register.css";
 
 function Register({ onRegister }) {
@@ -11,9 +11,12 @@ function Register({ onRegister }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    signup(e.target.elements.email.value, e.target.elements.password.value)
-      .then((data) => {
-        if (data) {
+    auth
+      .register(e.target.elements.email.value, e.target.elements.password.value)
+      .then((res) => {
+        if (res.data) {
+          setEmail("");
+          setPassword("");
           onRegister(); // Mostrar mensaje de éxito en App.js
           navigate("/signin"); // Redirige a la pantalla de inicio de sesión
         }

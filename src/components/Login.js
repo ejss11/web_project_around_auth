@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { signin } from "../utils/auth";
+import * as auth from "../utils/auth";
 import InfoTooltip from "./InfoTooltip";
 import "../blocks/login.css";
 
@@ -16,10 +16,12 @@ function Login({ onLogin }) {
     e.preventDefault();
     console.log("este es el correo: " + email);
     console.log("este es mi password: " + password);
-    signin(email, password)
+    auth
+      .authorize(email, password)
       .then((data) => {
         if (data.token) {
-          onLogin(data.token); // Actualiza el estado de autorización en App.js
+          localStorage.setItem("jwt", data.token);
+          onLogin(); // Actualiza el estado de autorización en App.js
           setIsInfoTooltipOpen(true);
           setIsSuccess(true);
           navigate("/"); // Redirige a la página principal

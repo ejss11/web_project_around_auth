@@ -1,7 +1,7 @@
 const BASE_URL = "https://tripleten.desarrollointerno.com";
 
 // Función para registrar un nuevo usuario
-export const signup = (email, password) => {
+export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -17,8 +17,8 @@ export const signup = (email, password) => {
 };
 
 // Función para iniciar sesión
-export const signin = (email, password) => {
-  return fetch(`https://tripleten.desarrollointerno.com/signin`, {
+export const authorize = (email, password) => {
+  return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email: email, password: password }),
