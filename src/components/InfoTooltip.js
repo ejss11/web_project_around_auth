@@ -6,7 +6,7 @@ import errorIcon from "../images/error-icon.svg";
 function InfoTooltip({ isOpen, onClose, isSuccess }) {
   return (
     <div
-      className={`popup  popup_content_info ${isOpen ? "popup_opened" : ""}`}
+      className={`popup  popup_content_info ${isOpen ? "popup_is-opened" : ""}`}
     >
       <div className="popup__overlay"></div>
       <div className="popup__content">

@@ -143,16 +143,18 @@ function App() {
   function handleLogout() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
+
     navigate("/signin");
   }
 
-  const handleLogin = (token) => {
-    checkToken(token)
+  const handleLogin = () => {
+    checkToken()
       .then((data) => {
-        setUserEmail(data.email);
+        setUserEmail(data.name);
         setIsLoggedIn(true);
         setIsSuccess(true);
         setIsInfoTooltipOpen(true);
+
         navigate("/");
       })
       .catch((err) => {
@@ -188,7 +190,12 @@ function App() {
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
-        <AppHeader isLoggedIn={loggedIn} onLogout={handleLogout} />
+        <AppHeader
+          isLoggedIn={loggedIn}
+          onLogout={handleLogout}
+          isUser={currentUser.name}
+        />
+
         <Routes>
           {/* Rutas protegidas para usuarios autenticados */}
           <Route
@@ -219,7 +226,9 @@ function App() {
           {/* Redirige cualquier otra ruta a /signin si no está autenticado */}
           <Route
             path="*"
-            element={<Navigate to={loggedIn ? "/" : "/signin"} />}
+            element={
+              <Navigate to={loggedIn ? "/around-react_es" : "/signin"} />
+            }
           />
         </Routes>
 

@@ -113,5 +113,12 @@ export const popupDeleteConfirmation = document.querySelector(
   ".popup_content_delete-card"
 );
 
+export const headerMenuRemoveMobil = () => {
+  const menuElement = document.querySelectorAll(".header__menu");
+  menuElement.forEach((item) => {
+    item.classList.remove("header__menu--show");
+  });
+};
+
 /*export const buttonConfirmationDeleteId =
   popupDeleteConfirmation.querySelector(".form__submit");*/

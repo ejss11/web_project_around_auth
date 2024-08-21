@@ -12,16 +12,12 @@ function Main({
   onCardLike,
   onCardClick,
   cards,
-  email,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="content">
       <section className="profile">
-        <div className="profile__welcome-message">
-          <h1>Bienvenido, {email}</h1>
-        </div>
         <div className="profile__image-container">
           <img
             src={currentUser.avatar}

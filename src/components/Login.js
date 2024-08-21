@@ -10,6 +10,7 @@ function Login({ onLogin }) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -21,15 +22,17 @@ function Login({ onLogin }) {
       .then((data) => {
         if (data.token) {
           localStorage.setItem("jwt", data.token);
-          onLogin(); // Actualiza el estado de autorización en App.js
-          setIsInfoTooltipOpen(true);
           setIsSuccess(true);
+          setIsInfoTooltipOpen(true);
+          onLogin(); // Actualiza el estado de autorización en App.js
           navigate("/"); // Redirige a la página principal
         }
       })
-      .catch((err) =>
-        setErrorMessage("Error de autorización. Intente nuevamente.")
-      );
+      .catch((err) => {
+        setErrorMessage("Error de autorización. Intente nuevamente.");
+        setIsSuccess(false);
+        setIsInfoTooltipOpen(true);
+      });
   };
 
   const handleCloseTooltip = () => {

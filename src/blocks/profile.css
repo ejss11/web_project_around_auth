@@ -239,6 +239,7 @@
 
   .profile__image-container {
     width: 120px;
+    margin-top: 15px;
   }
 
   .profile__image-container:hover .profile__overlay,
